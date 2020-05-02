@@ -215,7 +215,7 @@ void MainWindow::settingsLoadAll()
                 appSettings.value("Info/applicationName").value<QString>() != appSettings.applicationName())
         {
             qDebug() << "Abort loading settings ! organizationName or applicationName incorrect. Config file might be missing.";
-            addLog("App >>\t Error loading settings. Config file incorrect !", true);
+            addLog(APP_MSG_ERROR_SETTINGS_LOAD_FAILED, true);
             return;
         }
     }
@@ -551,18 +551,31 @@ void MainWindow::on_printIntroChangelog() // TODO
 
 void MainWindow::on_comboBoxSendReturnPressedSlot()
 {
-    sendMessageLineEdit(ui->tabWidgetControlSection->currentIndex());
+    SEND_MESSAGE_MODE mode = SEND_BOTH;
+
+    if (serial.isOpen() && !networkUDP.isOpen())
+        mode = SEND_MESSAGE_MODE::SEND_SERIAL_ONLY;
+    else if (!serial.isOpen() && networkUDP.isOpen())
+        mode = SEND_MESSAGE_MODE::SEND_UDP_ONLY;
+    else if (serial.isOpen() && networkUDP.isOpen())
+        mode = SEND_MESSAGE_MODE::SEND_BOTH;
+
+    sendMessageLineEdit(mode);
 }
 
-void MainWindow::sendMessageLineEdit(int mode)
+void MainWindow::sendMessageLineEdit(SEND_MESSAGE_MODE mode)
 {
-    if (mode == 0)
-        sendSerial(ui->comboBoxSend->currentText());
-    else if (mode == 1)
-        sendUDPDatagram(ui->comboBoxSend->currentText());
-    else
+    if (mode == SEND_MESSAGE_MODE::SEND_SERIAL_ONLY)
     {
-        sendSerial(ui->comboBoxSend->currentText()); // TODO
+        sendSerial(ui->comboBoxSend->currentText());
+    }
+    else if (mode == SEND_MESSAGE_MODE::SEND_UDP_ONLY)
+    {
+        sendUDPDatagram(ui->comboBoxSend->currentText());
+    }
+    else if (mode == SEND_MESSAGE_MODE::SEND_BOTH)
+    {
+        sendSerial(ui->comboBoxSend->currentText());
         sendUDPDatagram(ui->comboBoxSend->currentText());
     }
 
@@ -1354,7 +1367,7 @@ void MainWindow::loadFromRAM(bool loadText)
         return;
 
     this->processChart(RAMLabels, RAMData, RAMTime);
-    this->processTable(RAMLabels,RAMData);
+    this->processTable(RAMLabels, RAMData);
     this->processLogTable(RAMTime, RAMLabels, RAMData);
 }
 
@@ -2125,18 +2138,18 @@ void MainWindow::on_pushButtonLoadFile_clicked()
 
             if (fileReader.readAllAtOnce(&inputFile))
             {
-                addLog("App >>\t Read file succesfully... ", true);
+                addLog(APP_MSG_FILE_READ_SUCCES, true);
             }
             else
             {
-                addLog("App >>\t Error - invalid file !", true);
+                addLog(APP_MSG_FILE_READ_ERROR, true);
                 ui->pushButtonLoadFile->setText("Load File");
                 ui->progressBarLoadFile->setValue(0);
             }
         }
         else
         {
-            addLog("App >>\t Error - invalid file path !", true);
+            addLog(APP_MSG_ERROR_INVALID_FILE_PATH, true);
             ui->pushButtonLoadFile->setText("Load File");
             ui->progressBarLoadFile->setValue(0);
         }

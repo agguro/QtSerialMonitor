@@ -1,4 +1,3 @@
-- void MainWindow::getFileTimeRange(QFile *file) // TODO move to reader !
 -     if (mode == 0)
 sendSerial(ui->comboBoxSend->currentText());
 else if (mode == 1)

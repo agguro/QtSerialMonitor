@@ -158,6 +158,21 @@ private slots:
     void on_updateSerialDeviceList();
 
 private:
+
+    enum TAB_INDEX
+    {
+        SERIAL_USB = 0,
+        WIFI_UDP,
+    };
+
+    enum SEND_MESSAGE_MODE
+    {
+        SEND_SERIAL_ONLY,
+        SEND_UDP_ONLY,
+        SEND_BOTH,
+        SEND_MESSAGE_MODE_COUNT
+    };
+
     // QCompleter *completer;
     FileReader fileReader;
     Highlighter *highlighter;
@@ -193,7 +208,7 @@ private:
     void processTable(QStringList labels, QList<double> values);
     void saveToRAM(QStringList newlabelList, QList<double> newDataList, QList<long> newTimeList, bool saveText = false, QString text = "");
     void sendMessageKeyEvent(QKeyEvent *event);
-    void sendMessageLineEdit(int mode);
+    void sendMessageLineEdit(SEND_MESSAGE_MODE mode);
     void sendSerial(QString message);
     void sendUDPDatagram(QString message);
     void settingsLoadAll();
@@ -206,10 +221,6 @@ protected:
     void keyPressEvent(QKeyEvent *event);
 };
 
-enum TAB_INDEX
-{
-    SERIAL_USB = 0,
-    WIFI_UDP,
-};
+
 
 #endif // MAINWINDOW_H
