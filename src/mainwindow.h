@@ -1,16 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
 #include "config.h"
 #include "filereader.h"
+#include "highlighter.h"
+#include "infodialog.h"
 #include "logger.h"
 #include "networkudp.h"
 #include "parser.h"
 #include "qcustomplot.h"
 #include "serial.h"
-#include "infodialog.h"
-#include "highlighter.h"
-
 #include <QCloseEvent>
 #include <QCompleter>
 #include <QDateTime>
@@ -199,6 +199,7 @@ private:
     void createChart();
     void createChartTracer();
     void createTimers();
+    void exportArraysToCSV(QStringList labelList, QList<QList<double>> dataColums, QChar sep = ',');
     void exportTableLogToCSV(QTableView *table, QChar sep = ',');
     void loadFromRAM(bool loadText);
     void menageAutoCompleteList(QString input);
@@ -215,7 +216,6 @@ private:
     void settingsSaveAll();
     void setupGUI();
     void setupTable();
-    void exportArraysToCSV(QStringList labelList, QList<QList<double>> dataColums, QChar sep = ',');
 
 protected:
     void keyPressEvent(QKeyEvent *event);

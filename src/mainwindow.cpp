@@ -212,7 +212,7 @@ void MainWindow::settingsLoadAll()
         }
 
         if (appSettings.value("Info/organizationName").value<QString>() != appSettings.organizationName() ||
-                appSettings.value("Info/applicationName").value<QString>() != appSettings.applicationName())
+            appSettings.value("Info/applicationName").value<QString>() != appSettings.applicationName())
         {
             qDebug() << "Abort loading settings ! organizationName or applicationName incorrect. Config file might be missing.";
             addLog(APP_MSG_ERROR_SETTINGS_LOAD_FAILED, true);
@@ -264,10 +264,13 @@ void MainWindow::settingsLoadAll()
         ui->checkBoxAutoRefresh->setChecked(appSettings.value("GUI_Elements/checkBoxAutoRefresh.isChecked").value<bool>());
         ui->checkBoxAutoRescaleY->setChecked(appSettings.value("GUI_Elements/checkBoxAutoRescaleY.isChecked").value<bool>());
         ui->checkBoxAutoSaveBuffer->setChecked(appSettings.value("GUI_Elements/checkBoxAutoSaveBuffer.isChecked", true).value<bool>());
+        ui->checkBoxAutoScrollLogTable->setChecked(appSettings.value("GUI_Elements/checkBoxAutoScrollLogTable.isChecked", true).value<bool>());
+        ui->checkBoxAutoSizeColumnsLogTable->setChecked(appSettings.value("GUI_Elements/checkBoxAutoSizeColumnsLogTable.isChecked", true).value<bool>());
         ui->checkBoxAutoTrack->setChecked(appSettings.value("GUI_Elements/checkBoxAutoTrack.isChecked").value<bool>());
         ui->checkBoxDTR->setChecked(appSettings.value("GUI_Elements/checkBoxDTR.isChecked").value<bool>());
         ui->checkBoxEnableTracer->setChecked(appSettings.value("GUI_Elements/checkBoxEnableTracer.isChecked").value<bool>());
         ui->checkBoxRAMClearChart->setChecked(appSettings.value("GUI_Elements/checkBoxRAMClearChart.isChecked").value<bool>());
+        ui->checkBoxScrollLogEnableSorting->setChecked(appSettings.value("GUI_Elements/checkBoxScrollLogEnableSorting.isChecked", true).value<bool>());
         ui->checkBoxScrollToButtom->setChecked(appSettings.value("GUI_Elements/checkBoxScrollToButtom.isChecked").value<bool>());
         ui->checkBoxSendKey->setChecked(appSettings.value("GUI_Elements/checkBoxSendKey.isChecked").value<bool>());
         ui->checkBoxShowControlChars->setChecked(appSettings.value("GUI_Elements/checkBoxShowControlChars.isChecked", false).value<bool>());
@@ -275,9 +278,6 @@ void MainWindow::settingsLoadAll()
         ui->checkBoxTableAutoResize->setChecked(appSettings.value("GUI_Elements/checkBoxTableAutoResize.isChecked", true).value<bool>());
         ui->checkBoxTruncateFileOnSave->setChecked(appSettings.value("GUI_Elements/checkBoxTruncateFileOnSave.isChecked", false).value<bool>());
         ui->checkBoxWrapText->setChecked(appSettings.value("GUI_Elements/checkBoxWrapText.isChecked").value<bool>());
-        ui->checkBoxAutoScrollLogTable->setChecked(appSettings.value("GUI_Elements/checkBoxAutoScrollLogTable.isChecked", true).value<bool>());
-        ui->checkBoxAutoSizeColumnsLogTable->setChecked(appSettings.value("GUI_Elements/checkBoxAutoSizeColumnsLogTable.isChecked", true).value<bool>());
-        ui->checkBoxScrollLogEnableSorting->setChecked(appSettings.value("GUI_Elements/checkBoxScrollLogEnableSorting.isChecked", true).value<bool>());        ui->checkBoxScrollLogEnableSorting->setChecked(appSettings.value("GUI_Elements/checkBoxScrollLogEnableSorting.isChecked", true).value<bool>());
         ui->comboBoxAddTextMode->setCurrentIndex(appSettings.value("GUI_Elements/comboBoxAddTextMode.currentIndex").value<int>());
         ui->comboBoxBaudRates->setCurrentIndex(appSettings.value("GUI_Elements/comboBoxBaudRates.currentIndex").value<int>());
         ui->comboBoxClockSource->setCurrentIndex(appSettings.value("GUI_Elements/comboBoxClockSource.currentIndex").value<int>());
@@ -296,7 +296,6 @@ void MainWindow::settingsLoadAll()
         ui->comboBoxTracerStyle->setCurrentIndex(appSettings.value("GUI_Elements/comboBoxTracerStyle.currentIndex").value<int>());
         ui->comboBoxUDPReceiveMode->setCurrentIndex(appSettings.value("GUI_Elements/comboBoxUDPReceiveMode.currentIndex").value<int>());
         ui->comboBoxUDPSendMode->setCurrentIndex(appSettings.value("GUI_Elements/comboBoxUDPSendMode.currentIndex").value<int>());
-        ui->tabWidgetTableView->setCurrentIndex(appSettings.value("GUI_Elements/tabWidgetTableView.currentIndex").value<int>());
         ui->lineEditCustomParsingRules->setText(appSettings.value("data/lineEditCustomParsingRules.text").value<QString>());
         ui->lineEditExternalClockLabel->setText(appSettings.value("data/lineEditExternalClockLabel.text").value<QString>());
         ui->lineEditLoadFilePath->setText(appSettings.value("data/lineEditLoadFilePath.text").value<QString>());
@@ -307,14 +306,15 @@ void MainWindow::settingsLoadAll()
         ui->pushButtonEnableTableLog->setChecked(appSettings.value("GUI_Elements/pushButtonEnableTableLog.isChecked", true).value<bool>());
         ui->spinBoxMaxGraphs->setValue(appSettings.value("layout/spinBoxMaxGraphs.value").value<int>());
         ui->spinBoxMaxLines->setValue(appSettings.value("layout/spinBoxMaxLines.value").value<int>());
+        ui->spinBoxMaxRowsLogTable->setValue(appSettings.value("layout/spinBoxMaxRowsLogTable.value").value<int>());
         ui->spinBoxMaxTimeRange->setValue(appSettings.value("layout/spinBoxMaxTimeRange.value").value<int>());
         ui->spinBoxProcessingDelay->setValue(appSettings.value("layout/spinBoxProcessingDelay.value").value<int>());
         ui->spinBoxRemoveOldLabels->setValue(appSettings.value("layout/spinBoxRemoveOldLabels.value").value<int>());
         ui->spinBoxScrollingTimeRange->setValue(appSettings.value("layout/spinBoxScrollingTimeRange.value").value<int>());
         ui->spinBoxUDPReceivePort->setValue(appSettings.value("layout/spinBoxUDPReceivePort.value").value<int>());
         ui->spinBoxUDPTargetPort->setValue(appSettings.value("layout/spinBoxUDPTargetPort.value").value<int>());
-        ui->spinBoxMaxRowsLogTable->setValue(appSettings.value("layout/spinBoxMaxRowsLogTable.value").value<int>());
         ui->tabWidgetControlSection->setCurrentIndex(appSettings.value("GUI_Elements/tabWidgetControlSection.currentIndex").value<int>());
+        ui->tabWidgetTableView->setCurrentIndex(appSettings.value("GUI_Elements/tabWidgetTableView.currentIndex").value<int>());
 
         if (ui->lineEditLoadFilePath->text().isEmpty() == false)
         {
@@ -375,10 +375,13 @@ void MainWindow::settingsSaveAll()
         appSettings.setValue("GUI_Elements/checkBoxAutoRefresh.isChecked", ui->checkBoxAutoRefresh->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxAutoRescaleY.isChecked", ui->checkBoxAutoRescaleY->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxAutoSaveBuffer.isChecked", ui->checkBoxAutoSaveBuffer->isChecked());
+        appSettings.setValue("GUI_Elements/checkBoxAutoScrollLogTable.isChecked", ui->checkBoxAutoScrollLogTable->isChecked());
+        appSettings.setValue("GUI_Elements/checkBoxAutoSizeColumnsLogTable.isChecked", ui->checkBoxAutoSizeColumnsLogTable->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxAutoTrack.isChecked", ui->checkBoxAutoTrack->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxDTR.isChecked", ui->checkBoxDTR->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxEnableTracer.isChecked", ui->checkBoxEnableTracer->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxRAMClearChart.isChecked", ui->checkBoxRAMClearChart->isChecked());
+        appSettings.setValue("GUI_Elements/checkBoxScrollLogEnableSorting.isChecked", ui->checkBoxScrollLogEnableSorting->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxScrollToButtom.isChecked", ui->checkBoxScrollToButtom->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxSendKey.isChecked", ui->checkBoxSendKey->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxShowControlChars.isChecked", ui->checkBoxShowControlChars->isChecked());
@@ -386,9 +389,6 @@ void MainWindow::settingsSaveAll()
         appSettings.setValue("GUI_Elements/checkBoxTableAutoResize.isChecked", ui->checkBoxTableAutoResize->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxTruncateFileOnSave.isChecked", ui->checkBoxTruncateFileOnSave->isChecked());
         appSettings.setValue("GUI_Elements/checkBoxWrapText.isChecked", ui->checkBoxWrapText->isChecked());
-        appSettings.setValue("GUI_Elements/checkBoxScrollLogEnableSorting.isChecked", ui->checkBoxScrollLogEnableSorting->isChecked());
-        appSettings.setValue("GUI_Elements/checkBoxAutoSizeColumnsLogTable.isChecked", ui->checkBoxAutoSizeColumnsLogTable->isChecked());
-        appSettings.setValue("GUI_Elements/checkBoxAutoScrollLogTable.isChecked", ui->checkBoxAutoScrollLogTable->isChecked());
         appSettings.setValue("GUI_Elements/comboBoxAddTextMode.currentIndex", ui->comboBoxAddTextMode->currentIndex());
         appSettings.setValue("GUI_Elements/comboBoxBaudRates.currentIndex", ui->comboBoxBaudRates->currentIndex());
         appSettings.setValue("GUI_Elements/comboBoxClockSource.currentIndex", ui->comboBoxClockSource->currentIndex());
@@ -407,19 +407,19 @@ void MainWindow::settingsSaveAll()
         appSettings.setValue("GUI_Elements/comboBoxTracerStyle.currentIndex", ui->comboBoxTracerStyle->currentIndex());
         appSettings.setValue("GUI_Elements/comboBoxUDPReceiveMode.currentIndex", ui->comboBoxUDPReceiveMode->currentIndex());
         appSettings.setValue("GUI_Elements/comboBoxUDPSendMode.currentIndex", ui->comboBoxUDPSendMode->currentIndex());
-        appSettings.setValue("GUI_Elements/tabWidgetTableView.currentIndex", ui->tabWidgetTableView->currentIndex());
         appSettings.setValue("GUI_Elements/pushButtonEnablePlot.isChecked", ui->pushButtonEnablePlot->isChecked());
         appSettings.setValue("GUI_Elements/tabWidgetControlSection.currentIndex", ui->tabWidgetControlSection->currentIndex());
+        appSettings.setValue("GUI_Elements/tabWidgetTableView.currentIndex", ui->tabWidgetTableView->currentIndex());
+        appSettings.setValue("layout/pushButtonEnableTableLog.isChecked", ui->pushButtonEnableTableLog->isChecked());
         appSettings.setValue("layout/spinBoxMaxGraphs.value", ui->spinBoxMaxGraphs->value());
         appSettings.setValue("layout/spinBoxMaxLines.value", ui->spinBoxMaxLines->value());
+        appSettings.setValue("layout/spinBoxMaxRowsLogTable.value", ui->spinBoxMaxRowsLogTable->value());
         appSettings.setValue("layout/spinBoxMaxTimeRange.value", ui->spinBoxMaxTimeRange->value());
         appSettings.setValue("layout/spinBoxProcessingDelay.value", ui->spinBoxProcessingDelay->value());
         appSettings.setValue("layout/spinBoxRemoveOldLabels.value", ui->spinBoxRemoveOldLabels->value());
         appSettings.setValue("layout/spinBoxScrollingTimeRange.value", ui->spinBoxScrollingTimeRange->value());
         appSettings.setValue("layout/spinBoxUDPReceivePort.value", ui->spinBoxUDPReceivePort->value());
         appSettings.setValue("layout/spinBoxUDPTargetPort.value", ui->spinBoxUDPTargetPort->value());
-        appSettings.setValue("layout/spinBoxMaxRowsLogTable.value", ui->spinBoxMaxRowsLogTable->value());
-        appSettings.setValue("layout/pushButtonEnableTableLog.isChecked", ui->pushButtonEnableTableLog->isChecked());
     }
     // ------------------------- //
 
@@ -837,9 +837,9 @@ void MainWindow::on_tracerShowPointValue(QMouseEvent *event)
                           "<td>Y: %L3</td>"
                           "</tr>"
                           "</table>")
-                       .arg(graph->name())
-                       .arg(QTime::fromMSecsSinceStartOfDay(temp.x() * 1000).toString("hh:mm:ss:zzz"))
-                       .arg(QString::number(temp.y(), 'f', 5)),
+                           .arg(graph->name())
+                           .arg(QTime::fromMSecsSinceStartOfDay(temp.x() * 1000).toString("hh:mm:ss:zzz"))
+                           .arg(QString::number(temp.y(), 'f', 5)),
                        ui->widgetChart, ui->widgetChart->rect());
 }
 
@@ -1060,10 +1060,10 @@ void MainWindow::on_processSerial()
         this->processTable(labelList, numericDataList);
         this->processLogTable(timeStamps, labelList, numericDataList);
 
-//        QFuture<void> future = QtConcurrent::run([=]() // Cool !
-//        {
+        //        QFuture<void> future = QtConcurrent::run([=]() // Cool !
+        //        {
 
-//        });
+        //        });
     }
 }
 
@@ -1165,13 +1165,13 @@ void MainWindow::processChart(QStringList labelList, QList<double> numericDataLi
 
         if (canAddGraph && ui->widgetChart->graphCount() < ui->spinBoxMaxGraphs->value() &&
 
-                ((ui->comboBoxGraphDisplayMode->currentIndex() == 0) ||
+            ((ui->comboBoxGraphDisplayMode->currentIndex() == 0) ||
 
-                 (ui->comboBoxGraphDisplayMode->currentIndex() == 1 &&
-                  ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive)) ||
+             (ui->comboBoxGraphDisplayMode->currentIndex() == 1 &&
+              ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive)) ||
 
-                 (ui->comboBoxGraphDisplayMode->currentIndex() == 2 &&
-                  !ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive))))
+             (ui->comboBoxGraphDisplayMode->currentIndex() == 2 &&
+              !ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive))))
         {
             ui->widgetChart->addGraph();
             ui->widgetChart->graph()->setName(label);
