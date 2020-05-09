@@ -58,7 +58,6 @@ public slots:
     void on_updateProgressBar(float *percent);
     void closeEvent(QCloseEvent *event);
 private slots:
-    void on_aboutToQuitSlot();
     void on_action3D_orientation_triggered();
     void on_action50_50_view_triggered();
     void on_actionAbout_Qt_triggered();

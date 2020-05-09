@@ -14,8 +14,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     settingsLoadAll();
 
     infoDialog.setFixedSize(800, 600);
-
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(on_aboutToQuitSlot()));
 }
 
 MainWindow::~MainWindow()
@@ -25,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    // if (ui->pushButtonSerialConnect->isChecked() || ui->pushButtonUDPConnect->isChecked())
+    settingsSaveAll();
 
     if (serial.isOpen() || networkUDP.isOpen())
     {
@@ -36,12 +34,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         else
             event->accept();
     }
-}
-
-void MainWindow::on_aboutToQuitSlot()
-{
-    qDebug() << "on_aboutToQuitSlot";
-    settingsSaveAll();
 }
 
 void MainWindow::createTimers()
@@ -105,16 +97,15 @@ void MainWindow::setupGUI()
     }
     // ----------------------------------------------------------------- //
 
+    on_checkBoxAutoLogging_toggled(ui->checkBoxAutoLogging->isChecked());
+    on_checkBoxShowLegend_toggled(ui->checkBoxShowLegend->isChecked());
+    on_comboBoxClockSource_currentIndexChanged(ui->comboBoxClockSource->currentIndex());
     ui->comboBoxExternalTimeFormat->addItem("[ms]");
     ui->comboBoxExternalTimeFormat->setCurrentIndex(0);
     ui->lineEditLoadFilePath->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     ui->lineEditSaveFileName->setText("Log.txt");
     ui->lineEditSaveLogPath->setText(qApp->applicationDirPath() + "/Logs");
     ui->splitterGraphTable->setSizes({this->height(), 0});
-
-    emit on_checkBoxAutoLogging_toggled(ui->checkBoxAutoLogging->isChecked());
-    emit on_checkBoxShowLegend_toggled(ui->checkBoxShowLegend->isChecked());
-    emit on_comboBoxClockSource_currentIndexChanged(ui->comboBoxClockSource->currentIndex());
 
     on_updateSerialDeviceList();
 }
@@ -130,21 +121,21 @@ void MainWindow::createChart()
 
     QSharedPointer<QCPAxisTickerTime> xTicker(new QCPAxisTickerTime);
     QSharedPointer<QCPAxisTicker> yTicker(new QCPAxisTicker);
-    xTicker->setTimeFormat("%h:%m:%s:%z");
-    xTicker->setTickCount(5);
-    yTicker->setTickCount(10);
-    yTicker->setTickStepStrategy(QCPAxisTicker::TickStepStrategy::tssReadability);
-    ui->widgetChart->xAxis->setTicker(xTicker);
-    ui->widgetChart->yAxis->setTicker(yTicker);
-    ui->widgetChart->axisRect()->setupFullAxesBox(true);
     ui->widgetChart->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignBottom | Qt::AlignLeft);
-    ui->widgetChart->legend->setVisible(true);
+    ui->widgetChart->axisRect()->setupFullAxesBox(true);
     ui->widgetChart->legend->setFont(QFont("MS Shell Dlg 2", 8, QFont::Thin, false));
     ui->widgetChart->legend->setIconSize(15, 10);
     ui->widgetChart->legend->setSelectableParts(QCPLegend::SelectablePart::spItems); // legend box shall not be selectable, only legend items
+    ui->widgetChart->legend->setVisible(true);
     ui->widgetChart->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     ui->widgetChart->xAxis->setRange(-1.0, ui->spinBoxScrollingTimeRange->value());
+    ui->widgetChart->xAxis->setTicker(xTicker);
     ui->widgetChart->yAxis->setRange(-1.0, 1.0);
+    ui->widgetChart->yAxis->setTicker(yTicker);
+    xTicker->setTickCount(5);
+    xTicker->setTimeFormat("%h:%m:%s:%z");
+    yTicker->setTickCount(10);
+    yTicker->setTickStepStrategy(QCPAxisTicker::TickStepStrategy::tssReadability);
 
     connect(ui->widgetChart, SIGNAL(mouseDoubleClick(QMouseEvent *)), this, SLOT(on_chartMouseDoubleClickHandler(QMouseEvent *)));
     connect(ui->widgetChart, SIGNAL(mousePress(QMouseEvent *)), this, SLOT(on_chartMousePressHandler(QMouseEvent *)));
@@ -188,8 +179,6 @@ void MainWindow::setupTable()
     ui->tableWidgetParsedData->setColumnCount(2);
     ui->tableWidgetParsedData->setHorizontalHeaderItem(0, new QTableWidgetItem("Name"));
     ui->tableWidgetParsedData->setHorizontalHeaderItem(1, new QTableWidgetItem("Current Value"));
-    //    ui->tableWidgetParsedData->setHorizontalHeaderItem(2, new QTableWidgetItem("Max"));
-    //    ui->tableWidgetParsedData->setHorizontalHeaderItem(3, new QTableWidgetItem("Min"));
 
     ui->tableWidgetLogTable->clear();
     ui->tableWidgetLogTable->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
@@ -444,7 +433,7 @@ void MainWindow::processTable(QStringList labels, QList<double> values)
 
     foreach (auto label, labels)
     {
-        if (ui->tableWidgetParsedData->findItems(label, Qt::MatchFlag::MatchExactly).count() < 1)
+        if (ui->tableWidgetParsedData->findItems(label, Qt::MatchFlag::MatchExactly).count() <= 0)
         {
             ui->tableWidgetParsedData->insertRow(ui->tableWidgetParsedData->rowCount());
 
@@ -1175,8 +1164,8 @@ void MainWindow::processChart(QStringList labelList, QList<double> numericDataLi
         {
             ui->widgetChart->addGraph();
             ui->widgetChart->graph()->setName(label);
-
             ui->widgetChart->graph()->selectionDecorator()->setPen(QPen(Qt::black, 1.0, Qt::PenStyle::DashLine));
+
             while (ui->widgetChart->graph()->lineStyle() == (QCPGraph::LineStyle::lsImpulse))  //
                 ui->widgetChart->graph()->setLineStyle((QCPGraph::LineStyle)(rand() % 5 + 1)); // random line except for impulse
             while (ui->widgetChart->graph()->scatterStyle().shape() == QCPScatterStyle::ScatterShape::ssNone)
