@@ -156,7 +156,6 @@ private slots:
     void on_toolButtonHideTable_clicked();
     void on_tracerShowPointValue(QMouseEvent *event);
     void on_updateSerialDeviceList();
-
 private:
 
     enum TAB_INDEX

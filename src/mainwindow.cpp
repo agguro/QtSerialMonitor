@@ -318,6 +318,8 @@ void MainWindow::settingsLoadAll()
 
 void MainWindow::settingsSaveAll()
 {
+    qDebug() << "Saving settings";
+
     QSettings appSettings(QSettings::Format::IniFormat,
                           QSettings::Scope::UserScope,
                           "QtSerialMonitor", "QtSerialMonitor"); // Settings
