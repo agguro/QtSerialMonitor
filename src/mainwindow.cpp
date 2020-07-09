@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     createChart();
     setupTable();
     setupGUI();
-    //  create3DView();
+      create3DView();
 
     settingsLoadAll();
 
@@ -159,17 +159,16 @@ void MainWindow::createChart()
 
 void MainWindow::create3DView()
 {
-    //  QSurfaceFormat::setDefaultFormat(Q3DS::surfaceFormat());
-    // ui->widget3DView->presentation()->setProfilingEnabled(true);
-    //  ui->widget3DView->presentation()->setSource(QUrl("qrc:/presentation2/SampleProject.uia"));
+//    qmlEngine.load(QUrl(QStringLiteral("qrc:/3DVisual.qml")));
+//    if (qmlEngine.rootObjects().isEmpty())
+//        return;
+//    qDebug() << "LOAD OK";
+//    QWidget *qmlWindow = qobject_cast<QWidget*>(qmlEngine.rootObjects().at(0));
 
-    //    QObject *object = ui->widget3DView->presentation();
-    //    QObject *rect = object->findChild<QObject*>("Body");
-    //   if (rect)
-    //   {
-    //        qDebug() << "Found rect ";
-    //        rect->setProperty("width", 500);
-    //   }
+//    //ui->verticalLayout->addWidget(container);
+//    ui->gridLayout_8->addWidget(qmlWindow);
+
+   ui->quickWidget3DView->setSource(QUrl("qrc:/3DVisual.qml"));
 }
 
 void MainWindow::setupTable()

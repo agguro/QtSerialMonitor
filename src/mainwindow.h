@@ -33,6 +33,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QtQuickWidgets/QQuickWidget>
+#include <QQmlApplicationEngine>
 
 //#include <q3dsruntimeglobal.h>
 //#include <Q3DSWidget>
@@ -189,6 +190,7 @@ private:
     QTimer *udpStringProcessingTimer;
     Serial serial;
     Ui::MainWindow *ui;
+    QQmlApplicationEngine qmlEngine;
     void addLog(QString text, bool appendAsLine = false);
     void addLogBytes(QByteArray bytes, bool hexToBinary = false, bool appendAsLine = false);
     void chartPrintPreview();

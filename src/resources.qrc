@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>3DVisual.qml</file>
+        <file>AnimatedEntity.qml</file>
+    </qresource>
+</RCC>

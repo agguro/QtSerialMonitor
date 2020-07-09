@@ -69,9 +69,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    3DVisual.qml \
     QtSM.ico \
     TODO.txt
 
 RESOURCES += \
-    3dres.qrc
+    resources.qrc
 
