@@ -52,7 +52,6 @@ import Qt3D.Core 2.0
 import Qt3D.Render 2.15
 import Qt3D.Input 2.0
 import Qt3D.Extras 2.15
-
 import QtQuick 2.0 as QQ2
 
 
@@ -71,7 +70,7 @@ Entity {
         viewCenter: Qt.vector3d( 0.0, 0.0, 0.0 )
     }
 
-    FirstPersonCameraController { camera: camera }
+    OrbitCameraController { camera: camera }
 
     components: [
         RenderSettings {
@@ -89,18 +88,15 @@ Entity {
         id: material
     }
 
-    TorusMesh {
+    CuboidMesh {
         id: torusMesh
-        radius: 5
-        minorRadius: 1
-        rings: 100
-        slices: 20
+
     }
 
     Transform {
         id: torusTransform
         scale3D: Qt.vector3d(1.5, 1, 0.5)
-        rotation: fromAxisAndAngle(Qt.vector3d(1, 0, 0), 45)
+       // rotation: fromAxisAndAngle(Qt.vector3d(1, 0, 0), 45)
     }
 
     Entity {

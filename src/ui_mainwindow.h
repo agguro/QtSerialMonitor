@@ -302,7 +302,9 @@ public:
         actionPlotter->setObjectName(QString::fromUtf8("actionPlotter"));
         action3D_orientation = new QAction(MainWindow);
         action3D_orientation->setObjectName(QString::fromUtf8("action3D_orientation"));
-        action3D_orientation->setEnabled(false);
+        action3D_orientation->setEnabled(true);
+        QFont font;
+        action3D_orientation->setFont(font);
         actionPrint_Graph = new QAction(MainWindow);
         actionPrint_Graph->setObjectName(QString::fromUtf8("actionPrint_Graph"));
         actionPrint_log = new QAction(MainWindow);
@@ -364,10 +366,10 @@ public:
         sizePolicy1.setHeightForWidth(comboBoxSend->sizePolicy().hasHeightForWidth());
         comboBoxSend->setSizePolicy(sizePolicy1);
         comboBoxSend->setMinimumSize(QSize(0, 30));
-        QFont font;
-        font.setFamily(QString::fromUtf8("Consolas"));
-        font.setPointSize(9);
-        comboBoxSend->setFont(font);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Consolas"));
+        font1.setPointSize(9);
+        comboBoxSend->setFont(font1);
         comboBoxSend->setEditable(true);
 
         gridLayout_3->addWidget(comboBoxSend, 1, 1, 1, 1);
@@ -423,7 +425,7 @@ public:
         scrollAreaTextLogOptions->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 664, 102));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 760, 121));
         sizePolicy3.setHeightForWidth(scrollAreaWidgetContents_2->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents_2->setSizePolicy(sizePolicy3);
         gridLayout = new QGridLayout(scrollAreaWidgetContents_2);
@@ -671,7 +673,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 1113, 108));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 1016, 127));
         gridLayout_24 = new QGridLayout(scrollAreaWidgetContents_4);
         gridLayout_24->setSpacing(6);
         gridLayout_24->setContentsMargins(11, 11, 11, 11);
@@ -833,13 +835,13 @@ public:
         pushButtonClearAll->setObjectName(QString::fromUtf8("pushButtonClearAll"));
         sizePolicy4.setHeightForWidth(pushButtonClearAll->sizePolicy().hasHeightForWidth());
         pushButtonClearAll->setSizePolicy(sizePolicy4);
-        QFont font1;
-        font1.setBold(false);
-        font1.setItalic(false);
-        font1.setUnderline(true);
-        font1.setWeight(50);
-        font1.setStrikeOut(false);
-        pushButtonClearAll->setFont(font1);
+        QFont font2;
+        font2.setBold(false);
+        font2.setItalic(false);
+        font2.setUnderline(true);
+        font2.setWeight(50);
+        font2.setStrikeOut(false);
+        pushButtonClearAll->setFont(font2);
 
         gridLayout_19->addWidget(pushButtonClearAll, 2, 2, 1, 1);
 
@@ -918,9 +920,9 @@ public:
         label_6->setObjectName(QString::fromUtf8("label_6"));
         sizePolicy8.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
         label_6->setSizePolicy(sizePolicy8);
-        QFont font2;
-        font2.setPointSize(22);
-        label_6->setFont(font2);
+        QFont font3;
+        font3.setPointSize(22);
+        label_6->setFont(font3);
         label_6->setAlignment(Qt::AlignCenter);
 
         gridLayout_8->addWidget(label_6, 0, 0, 1, 1);
@@ -1122,9 +1124,9 @@ public:
         sizePolicy.setHeightForWidth(pushButtonSerialConnect->sizePolicy().hasHeightForWidth());
         pushButtonSerialConnect->setSizePolicy(sizePolicy);
         pushButtonSerialConnect->setMinimumSize(QSize(200, 30));
-        QFont font3;
-        font3.setUnderline(false);
-        pushButtonSerialConnect->setFont(font3);
+        QFont font4;
+        font4.setUnderline(false);
+        pushButtonSerialConnect->setFont(font4);
         pushButtonSerialConnect->setCheckable(true);
         pushButtonSerialConnect->setChecked(false);
         pushButtonSerialConnect->setAutoDefault(false);
@@ -1490,7 +1492,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 627, 69));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 628, 83));
         sizePolicy3.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents->setSizePolicy(sizePolicy3);
         horizontalLayout_6 = new QHBoxLayout(scrollAreaWidgetContents);
@@ -1528,9 +1530,9 @@ public:
         sizePolicy16.setVerticalStretch(0);
         sizePolicy16.setHeightForWidth(timeEditMaxParsingTime->sizePolicy().hasHeightForWidth());
         timeEditMaxParsingTime->setSizePolicy(sizePolicy16);
-        QFont font4;
-        font4.setPointSize(10);
-        timeEditMaxParsingTime->setFont(font4);
+        QFont font5;
+        font5.setPointSize(10);
+        timeEditMaxParsingTime->setFont(font5);
         timeEditMaxParsingTime->setCalendarPopup(false);
         timeEditMaxParsingTime->setTimeSpec(Qt::LocalTime);
 
@@ -1617,7 +1619,7 @@ public:
         timeEditMinParsingTime->setEnabled(true);
         sizePolicy16.setHeightForWidth(timeEditMinParsingTime->sizePolicy().hasHeightForWidth());
         timeEditMinParsingTime->setSizePolicy(sizePolicy16);
-        timeEditMinParsingTime->setFont(font4);
+        timeEditMinParsingTime->setFont(font5);
         timeEditMinParsingTime->setCalendarPopup(true);
 
         gridLayout_14->addWidget(timeEditMinParsingTime, 1, 3, 1, 1);
@@ -1698,11 +1700,11 @@ public:
         checkBoxAutoLogging->setObjectName(QString::fromUtf8("checkBoxAutoLogging"));
         sizePolicy16.setHeightForWidth(checkBoxAutoLogging->sizePolicy().hasHeightForWidth());
         checkBoxAutoLogging->setSizePolicy(sizePolicy16);
-        QFont font5;
-        font5.setBold(false);
-        font5.setUnderline(true);
-        font5.setWeight(50);
-        checkBoxAutoLogging->setFont(font5);
+        QFont font6;
+        font6.setBold(false);
+        font6.setUnderline(true);
+        font6.setWeight(50);
+        checkBoxAutoLogging->setFont(font6);
 
         gridLayout_9->addWidget(checkBoxAutoLogging, 0, 0, 1, 1);
 
@@ -1873,7 +1875,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1797, 26));
+        menuBar->setGeometry(QRect(0, 0, 1797, 27));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuSave = new QMenu(menuFile);

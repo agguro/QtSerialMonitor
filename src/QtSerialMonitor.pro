@@ -70,6 +70,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     3DVisual.qml \
+    AnimatedEntity.qml \
     QtSM.ico \
     TODO.txt
 

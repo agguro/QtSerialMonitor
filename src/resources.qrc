@@ -1,6 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>3DVisual.qml</file>
+        <file>assets/arrow_x.obj</file>
+        <file>assets/arrow_y.obj</file>
+        <file>assets/arrow_z.obj</file>
         <file>AnimatedEntity.qml</file>
     </qresource>
 </RCC>

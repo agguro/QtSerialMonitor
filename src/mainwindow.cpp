@@ -168,7 +168,8 @@ void MainWindow::create3DView()
 //    //ui->verticalLayout->addWidget(container);
 //    ui->gridLayout_8->addWidget(qmlWindow);
 
-   ui->quickWidget3DView->setSource(QUrl("qrc:/3DVisual.qml"));
+   ui->quickWidget3DView->setSource(QUrl::fromLocalFile("3DVisual.qml"));
+    ui->quickWidget3DView->show();
 }
 
 void MainWindow::setupTable()
