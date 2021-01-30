@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     settingsLoadAll();
 
     infoDialog.setFixedSize(800, 600);
+    qDebug() << "Init!";
 }
 
 MainWindow::~MainWindow()
@@ -159,17 +160,8 @@ void MainWindow::createChart()
 
 void MainWindow::create3DView()
 {
-    //    qmlEngine.load(QUrl(QStringLiteral("qrc:/3DVisual.qml")));
-    //    if (qmlEngine.rootObjects().isEmpty())
-    //        return;
-    //    qDebug() << "LOAD OK";
-    //    QWidget *qmlWindow = qobject_cast<QWidget*>(qmlEngine.rootObjects().at(0));
-
-    //    //ui->verticalLayout->addWidget(container);
-    //    ui->gridLayout_8->addWidget(qmlWindow);
-
-    ui->quickWidget3DView->setSource(QUrl::fromLocalFile("3DVisual.qml"));
-    ui->quickWidget3DView->show();
+   ui->quickWidget3DView->setSource(QUrl::fromLocalFile("3DVisual.qml"));
+   ui->quickWidget3DView->show();
 }
 
 void MainWindow::setupTable()
@@ -491,7 +483,7 @@ void MainWindow::processLogTable(QList<long> timeTable, QStringList labelTable, 
     for (auto i = 0; i < ui->tableWidgetLogTable->columnCount(); ++i)
         firstRow.append(ui->tableWidgetLogTable->horizontalHeaderItem(i)->text().trimmed());
 
-    bool resizeFlag = false;
+    static bool resizeFlag = false;
 
     foreach (auto label, labelTable)
     {
@@ -508,11 +500,15 @@ void MainWindow::processLogTable(QList<long> timeTable, QStringList labelTable, 
         }
         else
         {
-            if (oldRowCount <= ui->tableWidgetLogTable->rowCount())
+            if (oldRowCount == ui->tableWidgetLogTable->rowCount())
+            {
                 ui->tableWidgetLogTable->setRowCount(oldRowCount + 1);
+                resizeFlag = true;
+            }
 
             ui->tableWidgetLogTable->setItem(oldRowCount, 0, new QTableWidgetItem(QTime::fromMSecsSinceStartOfDay(timeTable[labelTable.indexOf(label)]).toString(parser.searchTimeFormatList[0])));
             ui->tableWidgetLogTable->setItem(oldRowCount, firstRow.indexOf(label), new QTableWidgetItem(QString::number(valueTable[labelTable.indexOf(label)])));
+
         }
     }
 
@@ -520,7 +516,10 @@ void MainWindow::processLogTable(QList<long> timeTable, QStringList labelTable, 
         ui->tableWidgetLogTable->scrollToBottom();
 
     if (ui->checkBoxAutoSizeColumnsLogTable->isChecked() && resizeFlag)
+    {
         ui->tableWidgetLogTable->resizeColumnsToContents();
+        resizeFlag = false;
+    }
 
     if (ui->spinBoxMaxRowsLogTable->value() > 0)
     {
@@ -1692,7 +1691,7 @@ void MainWindow::on_actionPlotter_triggered()
 
 void MainWindow::on_action3D_orientation_triggered()
 {
-    //  ui->stackedWidget->setCurrentIndex(1); // WIP
+      ui->stackedWidgetGraphView->setCurrentIndex(1); // WIP
 }
 
 void MainWindow::on_printPlot(QPrinter *printer)

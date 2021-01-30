@@ -48,119 +48,43 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Scene3D 2.0
-import Qt3D.Render 2.15
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQuick3D 1.15
+import QtQuick3D.Materials 1.15
+import QtQuick3D.Effects 1.15
+import QtQuick3D.Helpers 1.15
 
 Item {
-    Rectangle {
-        id: scene
+    anchors.fill: parent
+
+
+    View3D {
         anchors.fill: parent
-        color: "darkGray"
+        camera: camera
 
-        transform: Rotation {
-            id: sceneRotation
-            axis.x: 1
-            axis.y: 0
-            axis.z: 0
-            origin.x: scene.width / 2
-            origin.y: scene.height / 2
+        PerspectiveCamera {
+            id: camera
+            position: Qt.vector3d(0, 0, 600)
         }
 
-        Scene3D {
-            id: scene3d
-            anchors.fill: parent
-            anchors.margins: 10
-            focus: true
-            aspects: ["input", "logic"]
-            cameraAspectRatioMode: Scene3D.AutomaticAspectRatio
-
-            AnimatedEntity {
-                id: rootEntity
-            }
+        DirectionalLight {
+            position: Qt.vector3d(-500, 500, -100)
+            color: Qt.rgba(0.4, 0.2, 0.6, 1.0)
+            ambientColor: Qt.rgba(0.1, 0.1, 0.1, 1.0)
         }
+
+        Model {
+            source: "#Sphere"
+            materials: [ DefaultMaterial { } ]
+        }
+
+        AxisHelper {
+        }
+
+    }
+
+    WasdController {
+        controlledObject: camera
     }
 }
-
-
-
-    //    SequentialAnimation {
-    //        id: animation
-
-    //        RotationAnimation {
-    //            to: 45
-    //            duration: 1000
-    //            target: sceneRotation
-    //            property: "angle"
-    //            easing.type: Easing.InOutQuad
-    //        }
-    //        PauseAnimation { duration: 500 }
-    //        NumberAnimation {
-    //            to: 0.5
-    //            duration: 1000
-    //            target: scene
-    //            property: "scale"
-    //            easing.type: Easing.OutElastic
-    //        }
-    //        PauseAnimation { duration: 500 }
-    //        NumberAnimation {
-    //            to: 1.0
-    //            duration: 1000
-    //            target: scene
-    //            property: "scale"
-    //            easing.type: Easing.OutElastic
-    //        }
-    //        PauseAnimation { duration: 500 }
-    //        RotationAnimation {
-    //            to: 0
-    //            duration: 1000
-    //            target: sceneRotation
-    //            property: "angle"
-    //            easing.type: Easing.InOutQuad
-    //        }
-    //    }
-
-    //    Rectangle {
-    //        radius: 10
-    //        color: "#aaffffff"
-    //        border.width: 1
-    //        border.color: "black"
-    //        width: childrenRect.width + anchors.margins
-    //        height: childrenRect.height + anchors.margins
-    //        anchors.bottom: parent.bottom
-    //        anchors.right: parent.right
-    //        anchors.margins: 20
-
-    //        Column {
-    //            x: parent.anchors.margins / 2
-    //            y: x
-
-    //            Text { text: "Vendor: " + rootEntity.capabilities.vendor }
-    //            Text { text: "Renderer: " + rootEntity.capabilities.renderer }
-    //            Text { text: "Driver Version: " + rootEntity.capabilities.driverVersion }
-    //            Text { text: "GL Version: " + rootEntity.capabilities.majorVersion + "." + rootEntity.capabilities.minorVersion }
-    //            Text { text: "Profile: " + (rootEntity.capabilities.profile === RenderCapabilities.CoreProfile ? "Core" : (rootEntity.capabilities.profile === RenderCapabilities.CompatibilityProfile ? "Compatibility" : "Unknown")) }
-    //            Text { text: "GLSL Version: " + rootEntity.capabilities.glslVersion }
-    //            Text { text: "Extensions: " + (rootEntity.capabilities.extensions.length ? "" : "None") }
-    //            ListView {
-    //                model: rootEntity.capabilities.extensions
-    //                delegate: Text { text: "  " + model.modelData }
-    //                width: parent.width
-    //                height: 100
-    //                visible: rootEntity.capabilities.extensions.length > 0
-    //                clip: true
-    //            }
-    //            Text { text: "Max Texture Size: " + rootEntity.capabilities.maxTextureSize + "\nMax Texture Units: " + rootEntity.capabilities.maxTextureUnits + "\nMax Texture Layers: " + rootEntity.capabilities.maxTextureLayers }
-    //            Text { text: "Supports UBO: " + rootEntity.capabilities.supportsUBO }
-    //            Text { text: "  Max UBO Size: " + rootEntity.capabilities.maxUBOSize + "\n  Max UBO Bindings: " + rootEntity.capabilities.maxUBOBindings; visible: rootEntity.capabilities.supportsUBO }
-    //            Text { text: "Supports SSBO: " + rootEntity.capabilities.supportsSSBO }
-    //            Text { text: "  Max SSBO Size: " + rootEntity.capabilities.maxSSBOSize + "\n  Max SSBO Bindings: " + rootEntity.capabilities.maxSSBOBindings; visible: rootEntity.capabilities.supportsSSBO }
-    //            Text { text: "Supports Image Store: " + rootEntity.capabilities.supportsImageStore }
-    //            Text { text: "  Max Image Units: " + rootEntity.capabilities.maxImageUnits; visible: rootEntity.capabilities.supportsImageStore }
-    //            Text { text: "Supports Compute Shaders: " + rootEntity.capabilities.supportsCompute }
-    //            Text { text: "  Max Work Group Size: " + rootEntity.capabilities.maxWorkGroupSizeX + ", " + rootEntity.capabilities.maxWorkGroupSizeY + ", " + rootEntity.capabilities.maxWorkGroupSizeZ; visible: rootEntity.capabilities.supportsCompute }
-    //            Text { text: "  Max Work Group Count: " + rootEntity.capabilities.maxWorkGroupCountX + ", " + rootEntity.capabilities.maxWorkGroupCountY + ", " + rootEntity.capabilities.maxWorkGroupCountZ; visible: rootEntity.capabilities.supportsCompute }
-    //            Text { text: "  Max Invocations: " + rootEntity.capabilities.maxComputeInvocations; visible: rootEntity.capabilities.supportsCompute }
-    //            Text { text: "  Max Shared Memory: " + rootEntity.capabilities.maxComputeSharedMemorySize; visible: rootEntity.capabilities.supportsCompute }
-    //        }
-    //    }

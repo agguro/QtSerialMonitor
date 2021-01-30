@@ -53,7 +53,7 @@ import Qt3D.Render 2.15
 import Qt3D.Input 2.0
 import Qt3D.Extras 2.15
 import QtQuick 2.0 as QQ2
-
+import QtQuick3D.Helpers 1.15
 
 Entity {
     id: sceneRoot
@@ -134,5 +134,20 @@ Entity {
     Entity {
         id: sphereEntity
         components: [ sphereMesh, material, sphereTransform ]
+    }
+
+    AxisHelper
+    {
+id: h
+opacity: 1
+    }
+
+     Model {
+        scale: Qt.vector3d(100, 100, 100)
+        geometry: GridGeometry {
+            horizontalLines: 20
+            verticalLines: 20
+        }
+        materials: [ DefaultMaterial { } ]
     }
 }

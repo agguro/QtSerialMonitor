@@ -27,7 +27,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QShortcut>
-#include <QtDebug>
+#include <QDebug>
 #include <QTextEdit>
 #include <QTextStream>
 #include <QTime>
@@ -156,6 +156,7 @@ private slots:
     void on_toolButtonHideTable_clicked();
     void on_tracerShowPointValue(QMouseEvent *event);
     void on_updateSerialDeviceList();
+
 private:
 
     enum TAB_INDEX

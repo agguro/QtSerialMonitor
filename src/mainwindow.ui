@@ -661,7 +661,7 @@
                </size>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="page">
                <layout class="QGridLayout" name="gridLayout_12">
@@ -1079,7 +1079,7 @@ p, li { white-space: pre-wrap; }
                         <property name="verticalSpacing">
                          <number>3</number>
                         </property>
-                        <item row="2" column="2">
+                        <item row="2" column="3">
                          <widget class="QPushButton" name="pushButtonClearAll">
                           <property name="sizePolicy">
                            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -1098,115 +1098,6 @@ p, li { white-space: pre-wrap; }
                           </property>
                           <property name="text">
                            <string>Clear All</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="pushButtonClearGraphs">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>Clear plot</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="4" column="2">
-                         <widget class="QToolButton" name="toolButtonAdvancedGraphMenu">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Parser data</string>
-                          </property>
-                          <property name="toolButtonStyle">
-                           <enum>Qt::ToolButtonTextBesideIcon</enum>
-                          </property>
-                          <property name="autoRaise">
-                           <bool>false</bool>
-                          </property>
-                          <property name="arrowType">
-                           <enum>Qt::UpArrow</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="4" column="1">
-                         <widget class="QSpinBox" name="spinBoxRemoveOldLabels">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>113</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="whatsThis">
-                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sets the missing samples threshold value. If processed string doesnt contain new data for the already present graph &amp;lt;n&amp;gt; times in a row it is then this graph will be automatically deleted. This is useful when switching between diffrent steaming data sets or removing garbage data.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignCenter</set>
-                          </property>
-                          <property name="suffix">
-                           <string/>
-                          </property>
-                          <property name="prefix">
-                           <string>Max missing: </string>
-                          </property>
-                          <property name="maximum">
-                           <number>99</number>
-                          </property>
-                          <property name="singleStep">
-                           <number>5</number>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="2">
-                         <widget class="QSpinBox" name="spinBoxMaxTimeRange">
-                          <property name="enabled">
-                           <bool>true</bool>
-                          </property>
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignCenter</set>
-                          </property>
-                          <property name="suffix">
-                           <string> [s]</string>
-                          </property>
-                          <property name="prefix">
-                           <string>Keep last </string>
-                          </property>
-                          <property name="minimum">
-                           <number>0</number>
-                          </property>
-                          <property name="maximum">
-                           <number>3600</number>
-                          </property>
-                          <property name="singleStep">
-                           <number>10</number>
-                          </property>
-                          <property name="value">
-                           <number>3600</number>
                           </property>
                          </widget>
                         </item>
@@ -1241,6 +1132,115 @@ p, li { white-space: pre-wrap; }
                           </property>
                           <property name="value">
                            <number>10</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2" colspan="2">
+                         <widget class="QSpinBox" name="spinBoxMaxTimeRange">
+                          <property name="enabled">
+                           <bool>true</bool>
+                          </property>
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                          <property name="suffix">
+                           <string> [s]</string>
+                          </property>
+                          <property name="prefix">
+                           <string>Keep last </string>
+                          </property>
+                          <property name="minimum">
+                           <number>0</number>
+                          </property>
+                          <property name="maximum">
+                           <number>3600</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>10</number>
+                          </property>
+                          <property name="value">
+                           <number>3600</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="3">
+                         <widget class="QToolButton" name="toolButtonAdvancedGraphMenu">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Parser data</string>
+                          </property>
+                          <property name="toolButtonStyle">
+                           <enum>Qt::ToolButtonTextBesideIcon</enum>
+                          </property>
+                          <property name="autoRaise">
+                           <bool>false</bool>
+                          </property>
+                          <property name="arrowType">
+                           <enum>Qt::UpArrow</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="1" colspan="2">
+                         <widget class="QSpinBox" name="spinBoxRemoveOldLabels">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>113</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="whatsThis">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sets the missing samples threshold value. If processed string doesnt contain new data for the already present graph &amp;lt;n&amp;gt; times in a row it is then this graph will be automatically deleted. This is useful when switching between diffrent steaming data sets or removing garbage data.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                          <property name="suffix">
+                           <string/>
+                          </property>
+                          <property name="prefix">
+                           <string>Max missing: </string>
+                          </property>
+                          <property name="maximum">
+                           <number>99</number>
+                          </property>
+                          <property name="singleStep">
+                           <number>5</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1" colspan="2">
+                         <widget class="QPushButton" name="pushButtonClearGraphs">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>Clear plot</string>
                           </property>
                          </widget>
                         </item>
@@ -1292,7 +1292,7 @@ p, li { white-space: pre-wrap; }
                <item>
                 <widget class="QTabWidget" name="tabWidgetTableView">
                  <property name="currentIndex">
-                  <number>1</number>
+                  <number>0</number>
                  </property>
                  <widget class="QWidget" name="tabWidgetTableViewPage1">
                   <attribute name="title">
@@ -1445,6 +1445,9 @@ p, li { white-space: pre-wrap; }
                    </item>
                    <item row="1" column="3">
                     <widget class="QSpinBox" name="spinBoxMaxRowsLogTable">
+                     <property name="minimum">
+                      <number>10</number>
+                     </property>
                      <property name="maximum">
                       <number>10000</number>
                      </property>
@@ -1452,7 +1455,7 @@ p, li { white-space: pre-wrap; }
                       <number>10</number>
                      </property>
                      <property name="value">
-                      <number>0</number>
+                      <number>10</number>
                      </property>
                     </widget>
                    </item>
@@ -1634,51 +1637,6 @@ p, li { white-space: pre-wrap; }
               </size>
              </property>
             </spacer>
-           </item>
-           <item row="5" column="3">
-            <widget class="QPushButton" name="pushButtonSerialConnect">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>200</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="whatsThis">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable serial communication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Connect</string>
-             </property>
-             <property name="shortcut">
-              <string>Alt+N</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
-             </property>
-             <property name="default">
-              <bool>true</bool>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
-             </property>
-            </widget>
            </item>
            <item row="5" column="6">
             <layout class="QGridLayout" name="gridLayout_2">
@@ -2120,6 +2078,51 @@ p, li { white-space: pre-wrap; }
               </widget>
              </item>
             </layout>
+           </item>
+           <item row="5" column="3">
+            <widget class="QPushButton" name="pushButtonSerialConnect">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="whatsThis">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable serial communication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Connect</string>
+             </property>
+             <property name="shortcut">
+              <string>Alt+N</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>

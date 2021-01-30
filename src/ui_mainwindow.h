@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.15.0
+** Created by: Qt User Interface Compiler version 5.15.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -133,11 +133,11 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QGridLayout *gridLayout_19;
     QPushButton *pushButtonClearAll;
-    QPushButton *pushButtonClearGraphs;
+    QSpinBox *spinBoxMaxGraphs;
+    QSpinBox *spinBoxMaxTimeRange;
     QToolButton *toolButtonAdvancedGraphMenu;
     QSpinBox *spinBoxRemoveOldLabels;
-    QSpinBox *spinBoxMaxTimeRange;
-    QSpinBox *spinBoxMaxGraphs;
+    QPushButton *pushButtonClearGraphs;
     QWidget *page_2;
     QGridLayout *gridLayout_8;
     QLabel *label_6;
@@ -173,7 +173,6 @@ public:
     QWidget *tabSerial;
     QGridLayout *gridLayout_5;
     QSpacerItem *horizontalSpacer_6;
-    QPushButton *pushButtonSerialConnect;
     QGridLayout *gridLayout_2;
     QComboBox *comboBoxStopBits;
     QCheckBox *checkBoxDTR;
@@ -193,6 +192,7 @@ public:
     QPushButton *pushButtonRefresh;
     QCheckBox *checkBoxAutoRefresh;
     QRadioButton *radioButtonDeviceUpdate;
+    QPushButton *pushButtonSerialConnect;
     QWidget *tabWiFi;
     QGridLayout *gridLayout_6;
     QPushButton *pushButtonUDPConnect;
@@ -425,7 +425,7 @@ public:
         scrollAreaTextLogOptions->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 760, 121));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 697, 109));
         sizePolicy3.setHeightForWidth(scrollAreaWidgetContents_2->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents_2->setSizePolicy(sizePolicy3);
         gridLayout = new QGridLayout(scrollAreaWidgetContents_2);
@@ -673,7 +673,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 1016, 127));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 1062, 115));
         gridLayout_24 = new QGridLayout(scrollAreaWidgetContents_4);
         gridLayout_24->setSpacing(6);
         gridLayout_24->setContentsMargins(11, 11, 11, 11);
@@ -843,49 +843,7 @@ public:
         font2.setStrikeOut(false);
         pushButtonClearAll->setFont(font2);
 
-        gridLayout_19->addWidget(pushButtonClearAll, 2, 2, 1, 1);
-
-        pushButtonClearGraphs = new QPushButton(scrollAreaWidgetContents_4);
-        pushButtonClearGraphs->setObjectName(QString::fromUtf8("pushButtonClearGraphs"));
-        sizePolicy10.setHeightForWidth(pushButtonClearGraphs->sizePolicy().hasHeightForWidth());
-        pushButtonClearGraphs->setSizePolicy(sizePolicy10);
-
-        gridLayout_19->addWidget(pushButtonClearGraphs, 2, 1, 1, 1);
-
-        toolButtonAdvancedGraphMenu = new QToolButton(scrollAreaWidgetContents_4);
-        toolButtonAdvancedGraphMenu->setObjectName(QString::fromUtf8("toolButtonAdvancedGraphMenu"));
-        sizePolicy6.setHeightForWidth(toolButtonAdvancedGraphMenu->sizePolicy().hasHeightForWidth());
-        toolButtonAdvancedGraphMenu->setSizePolicy(sizePolicy6);
-        toolButtonAdvancedGraphMenu->setMinimumSize(QSize(150, 0));
-        toolButtonAdvancedGraphMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-        toolButtonAdvancedGraphMenu->setAutoRaise(false);
-        toolButtonAdvancedGraphMenu->setArrowType(Qt::UpArrow);
-
-        gridLayout_19->addWidget(toolButtonAdvancedGraphMenu, 4, 2, 1, 1);
-
-        spinBoxRemoveOldLabels = new QSpinBox(scrollAreaWidgetContents_4);
-        spinBoxRemoveOldLabels->setObjectName(QString::fromUtf8("spinBoxRemoveOldLabels"));
-        sizePolicy10.setHeightForWidth(spinBoxRemoveOldLabels->sizePolicy().hasHeightForWidth());
-        spinBoxRemoveOldLabels->setSizePolicy(sizePolicy10);
-        spinBoxRemoveOldLabels->setMinimumSize(QSize(113, 0));
-        spinBoxRemoveOldLabels->setAlignment(Qt::AlignCenter);
-        spinBoxRemoveOldLabels->setMaximum(99);
-        spinBoxRemoveOldLabels->setSingleStep(5);
-
-        gridLayout_19->addWidget(spinBoxRemoveOldLabels, 4, 1, 1, 1);
-
-        spinBoxMaxTimeRange = new QSpinBox(scrollAreaWidgetContents_4);
-        spinBoxMaxTimeRange->setObjectName(QString::fromUtf8("spinBoxMaxTimeRange"));
-        spinBoxMaxTimeRange->setEnabled(true);
-        sizePolicy10.setHeightForWidth(spinBoxMaxTimeRange->sizePolicy().hasHeightForWidth());
-        spinBoxMaxTimeRange->setSizePolicy(sizePolicy10);
-        spinBoxMaxTimeRange->setAlignment(Qt::AlignCenter);
-        spinBoxMaxTimeRange->setMinimum(0);
-        spinBoxMaxTimeRange->setMaximum(3600);
-        spinBoxMaxTimeRange->setSingleStep(10);
-        spinBoxMaxTimeRange->setValue(3600);
-
-        gridLayout_19->addWidget(spinBoxMaxTimeRange, 1, 2, 1, 1);
+        gridLayout_19->addWidget(pushButtonClearAll, 2, 3, 1, 1);
 
         spinBoxMaxGraphs = new QSpinBox(scrollAreaWidgetContents_4);
         spinBoxMaxGraphs->setObjectName(QString::fromUtf8("spinBoxMaxGraphs"));
@@ -898,6 +856,48 @@ public:
         spinBoxMaxGraphs->setValue(10);
 
         gridLayout_19->addWidget(spinBoxMaxGraphs, 1, 1, 1, 1);
+
+        spinBoxMaxTimeRange = new QSpinBox(scrollAreaWidgetContents_4);
+        spinBoxMaxTimeRange->setObjectName(QString::fromUtf8("spinBoxMaxTimeRange"));
+        spinBoxMaxTimeRange->setEnabled(true);
+        sizePolicy10.setHeightForWidth(spinBoxMaxTimeRange->sizePolicy().hasHeightForWidth());
+        spinBoxMaxTimeRange->setSizePolicy(sizePolicy10);
+        spinBoxMaxTimeRange->setAlignment(Qt::AlignCenter);
+        spinBoxMaxTimeRange->setMinimum(0);
+        spinBoxMaxTimeRange->setMaximum(3600);
+        spinBoxMaxTimeRange->setSingleStep(10);
+        spinBoxMaxTimeRange->setValue(3600);
+
+        gridLayout_19->addWidget(spinBoxMaxTimeRange, 1, 2, 1, 2);
+
+        toolButtonAdvancedGraphMenu = new QToolButton(scrollAreaWidgetContents_4);
+        toolButtonAdvancedGraphMenu->setObjectName(QString::fromUtf8("toolButtonAdvancedGraphMenu"));
+        sizePolicy6.setHeightForWidth(toolButtonAdvancedGraphMenu->sizePolicy().hasHeightForWidth());
+        toolButtonAdvancedGraphMenu->setSizePolicy(sizePolicy6);
+        toolButtonAdvancedGraphMenu->setMinimumSize(QSize(150, 0));
+        toolButtonAdvancedGraphMenu->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        toolButtonAdvancedGraphMenu->setAutoRaise(false);
+        toolButtonAdvancedGraphMenu->setArrowType(Qt::UpArrow);
+
+        gridLayout_19->addWidget(toolButtonAdvancedGraphMenu, 3, 3, 1, 1);
+
+        spinBoxRemoveOldLabels = new QSpinBox(scrollAreaWidgetContents_4);
+        spinBoxRemoveOldLabels->setObjectName(QString::fromUtf8("spinBoxRemoveOldLabels"));
+        sizePolicy10.setHeightForWidth(spinBoxRemoveOldLabels->sizePolicy().hasHeightForWidth());
+        spinBoxRemoveOldLabels->setSizePolicy(sizePolicy10);
+        spinBoxRemoveOldLabels->setMinimumSize(QSize(113, 0));
+        spinBoxRemoveOldLabels->setAlignment(Qt::AlignCenter);
+        spinBoxRemoveOldLabels->setMaximum(99);
+        spinBoxRemoveOldLabels->setSingleStep(5);
+
+        gridLayout_19->addWidget(spinBoxRemoveOldLabels, 3, 1, 1, 2);
+
+        pushButtonClearGraphs = new QPushButton(scrollAreaWidgetContents_4);
+        pushButtonClearGraphs->setObjectName(QString::fromUtf8("pushButtonClearGraphs"));
+        sizePolicy10.setHeightForWidth(pushButtonClearGraphs->sizePolicy().hasHeightForWidth());
+        pushButtonClearGraphs->setSizePolicy(sizePolicy10);
+
+        gridLayout_19->addWidget(pushButtonClearGraphs, 2, 1, 1, 2);
 
 
         horizontalLayout_3->addLayout(gridLayout_19);
@@ -1019,9 +1019,10 @@ public:
 
         spinBoxMaxRowsLogTable = new QSpinBox(tabWidgetTableViewPage2);
         spinBoxMaxRowsLogTable->setObjectName(QString::fromUtf8("spinBoxMaxRowsLogTable"));
+        spinBoxMaxRowsLogTable->setMinimum(10);
         spinBoxMaxRowsLogTable->setMaximum(10000);
         spinBoxMaxRowsLogTable->setSingleStep(10);
-        spinBoxMaxRowsLogTable->setValue(0);
+        spinBoxMaxRowsLogTable->setValue(10);
 
         gridLayout_23->addWidget(spinBoxMaxRowsLogTable, 1, 3, 1, 1);
 
@@ -1118,21 +1119,6 @@ public:
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_5->addItem(horizontalSpacer_6, 5, 4, 1, 1);
-
-        pushButtonSerialConnect = new QPushButton(tabSerial);
-        pushButtonSerialConnect->setObjectName(QString::fromUtf8("pushButtonSerialConnect"));
-        sizePolicy.setHeightForWidth(pushButtonSerialConnect->sizePolicy().hasHeightForWidth());
-        pushButtonSerialConnect->setSizePolicy(sizePolicy);
-        pushButtonSerialConnect->setMinimumSize(QSize(200, 30));
-        QFont font4;
-        font4.setUnderline(false);
-        pushButtonSerialConnect->setFont(font4);
-        pushButtonSerialConnect->setCheckable(true);
-        pushButtonSerialConnect->setChecked(false);
-        pushButtonSerialConnect->setAutoDefault(false);
-        pushButtonSerialConnect->setFlat(false);
-
-        gridLayout_5->addWidget(pushButtonSerialConnect, 5, 3, 1, 1);
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setSpacing(6);
@@ -1315,6 +1301,21 @@ public:
 
         gridLayout_5->addLayout(gridLayout_2, 5, 6, 1, 1);
 
+        pushButtonSerialConnect = new QPushButton(tabSerial);
+        pushButtonSerialConnect->setObjectName(QString::fromUtf8("pushButtonSerialConnect"));
+        sizePolicy.setHeightForWidth(pushButtonSerialConnect->sizePolicy().hasHeightForWidth());
+        pushButtonSerialConnect->setSizePolicy(sizePolicy);
+        pushButtonSerialConnect->setMinimumSize(QSize(200, 30));
+        QFont font4;
+        font4.setUnderline(false);
+        pushButtonSerialConnect->setFont(font4);
+        pushButtonSerialConnect->setCheckable(true);
+        pushButtonSerialConnect->setChecked(false);
+        pushButtonSerialConnect->setAutoDefault(false);
+        pushButtonSerialConnect->setFlat(false);
+
+        gridLayout_5->addWidget(pushButtonSerialConnect, 5, 3, 1, 1);
+
         tabWidgetControlSection->addTab(tabSerial, QString());
         tabWiFi = new QWidget();
         tabWiFi->setObjectName(QString::fromUtf8("tabWiFi"));
@@ -1492,7 +1493,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 628, 83));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 600, 90));
         sizePolicy3.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents->setSizePolicy(sizePolicy3);
         horizontalLayout_6 = new QHBoxLayout(scrollAreaWidgetContents);
@@ -1875,7 +1876,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1797, 27));
+        menuBar->setGeometry(QRect(0, 0, 1797, 23));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuSave = new QMenu(menuFile);
@@ -1929,11 +1930,11 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidgetGraphView->setCurrentIndex(0);
+        stackedWidgetGraphView->setCurrentIndex(1);
         tabWidgetTableView->setCurrentIndex(0);
         tabWidgetControlSection->setCurrentIndex(0);
-        pushButtonSerialConnect->setDefault(true);
         comboBoxDataBits->setCurrentIndex(3);
+        pushButtonSerialConnect->setDefault(true);
         pushButtonUDPConnect->setDefault(true);
         comboBoxUDPSendMode->setCurrentIndex(2);
         pushButtonLogging->setDefault(true);
@@ -2135,17 +2136,17 @@ public:
         pushButtonEnablePlot->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P", nullptr));
 #endif // QT_CONFIG(shortcut)
         pushButtonClearAll->setText(QCoreApplication::translate("MainWindow", "Clear All", nullptr));
-        pushButtonClearGraphs->setText(QCoreApplication::translate("MainWindow", "Clear plot", nullptr));
+        spinBoxMaxGraphs->setSuffix(QCoreApplication::translate("MainWindow", " graphs", nullptr));
+        spinBoxMaxGraphs->setPrefix(QCoreApplication::translate("MainWindow", "Max ", nullptr));
+        spinBoxMaxTimeRange->setSuffix(QCoreApplication::translate("MainWindow", " [s]", nullptr));
+        spinBoxMaxTimeRange->setPrefix(QCoreApplication::translate("MainWindow", "Keep last ", nullptr));
         toolButtonAdvancedGraphMenu->setText(QCoreApplication::translate("MainWindow", "Parser data", nullptr));
 #if QT_CONFIG(whatsthis)
         spinBoxRemoveOldLabels->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Sets the missing samples threshold value. If processed string doesnt contain new data for the already present graph &lt;n&gt; times in a row it is then this graph will be automatically deleted. This is useful when switching between diffrent steaming data sets or removing garbage data.</p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
         spinBoxRemoveOldLabels->setSuffix(QString());
         spinBoxRemoveOldLabels->setPrefix(QCoreApplication::translate("MainWindow", "Max missing: ", nullptr));
-        spinBoxMaxTimeRange->setSuffix(QCoreApplication::translate("MainWindow", " [s]", nullptr));
-        spinBoxMaxTimeRange->setPrefix(QCoreApplication::translate("MainWindow", "Keep last ", nullptr));
-        spinBoxMaxGraphs->setSuffix(QCoreApplication::translate("MainWindow", " graphs", nullptr));
-        spinBoxMaxGraphs->setPrefix(QCoreApplication::translate("MainWindow", "Max ", nullptr));
+        pushButtonClearGraphs->setText(QCoreApplication::translate("MainWindow", "Clear plot", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "3D View", nullptr));
         pushButtonSetSelectedToGraph->setText(QCoreApplication::translate("MainWindow", "Apply selected to plot", nullptr));
         checkBoxTableAutoResize->setText(QCoreApplication::translate("MainWindow", "Auto-resize", nullptr));
@@ -2161,13 +2162,6 @@ public:
         tabWidgetTableView->setTabText(tabWidgetTableView->indexOf(tabWidgetTableViewPage2), QCoreApplication::translate("MainWindow", "Samples", nullptr));
         toolButtonHideTable->setText(QCoreApplication::translate("MainWindow", "Hide", nullptr));
         groupBoxSettings->setTitle(QCoreApplication::translate("MainWindow", "Control section:", nullptr));
-#if QT_CONFIG(whatsthis)
-        pushButtonSerialConnect->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Enable/disable serial communication</p></body></html>", nullptr));
-#endif // QT_CONFIG(whatsthis)
-        pushButtonSerialConnect->setText(QCoreApplication::translate("MainWindow", "Connect", nullptr));
-#if QT_CONFIG(shortcut)
-        pushButtonSerialConnect->setShortcut(QCoreApplication::translate("MainWindow", "Alt+N", nullptr));
-#endif // QT_CONFIG(shortcut)
         comboBoxStopBits->setItemText(0, QCoreApplication::translate("MainWindow", "OneStop", nullptr));
         comboBoxStopBits->setItemText(1, QCoreApplication::translate("MainWindow", "OneAndHalfStop", nullptr));
         comboBoxStopBits->setItemText(2, QCoreApplication::translate("MainWindow", "TwoStop", nullptr));
@@ -2215,6 +2209,13 @@ public:
 #endif // QT_CONFIG(whatsthis)
         checkBoxAutoRefresh->setText(QCoreApplication::translate("MainWindow", "Auto update", nullptr));
         radioButtonDeviceUpdate->setText(QString());
+#if QT_CONFIG(whatsthis)
+        pushButtonSerialConnect->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Enable/disable serial communication</p></body></html>", nullptr));
+#endif // QT_CONFIG(whatsthis)
+        pushButtonSerialConnect->setText(QCoreApplication::translate("MainWindow", "Connect", nullptr));
+#if QT_CONFIG(shortcut)
+        pushButtonSerialConnect->setShortcut(QCoreApplication::translate("MainWindow", "Alt+N", nullptr));
+#endif // QT_CONFIG(shortcut)
         tabWidgetControlSection->setTabText(tabWidgetControlSection->indexOf(tabSerial), QCoreApplication::translate("MainWindow", "Serial COM", nullptr));
         pushButtonUDPConnect->setText(QCoreApplication::translate("MainWindow", "Open Connection", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Target IP:", nullptr));
