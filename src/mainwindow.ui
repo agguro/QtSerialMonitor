@@ -219,8 +219,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>760</width>
-                <height>121</height>
+                <width>697</width>
+                <height>109</height>
                </rect>
               </property>
               <property name="sizePolicy">
@@ -734,8 +734,8 @@ p, li { white-space: pre-wrap; }
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>1016</width>
-                     <height>127</height>
+                     <width>1062</width>
+                     <height>115</height>
                     </rect>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_24">
@@ -1292,7 +1292,7 @@ p, li { white-space: pre-wrap; }
                <item>
                 <widget class="QTabWidget" name="tabWidgetTableView">
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="tabWidgetTableViewPage1">
                   <attribute name="title">
@@ -2490,8 +2490,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>628</width>
-                <height>83</height>
+                <width>600</width>
+                <height>90</height>
                </rect>
               </property>
               <property name="sizePolicy">
@@ -3239,7 +3239,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1797</width>
-     <height>27</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

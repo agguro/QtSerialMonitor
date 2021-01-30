@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     createChart();
     setupTable();
     setupGUI();
-      create3DView();
+    create3DView();
 
     settingsLoadAll();
 
@@ -159,16 +159,16 @@ void MainWindow::createChart()
 
 void MainWindow::create3DView()
 {
-//    qmlEngine.load(QUrl(QStringLiteral("qrc:/3DVisual.qml")));
-//    if (qmlEngine.rootObjects().isEmpty())
-//        return;
-//    qDebug() << "LOAD OK";
-//    QWidget *qmlWindow = qobject_cast<QWidget*>(qmlEngine.rootObjects().at(0));
+    //    qmlEngine.load(QUrl(QStringLiteral("qrc:/3DVisual.qml")));
+    //    if (qmlEngine.rootObjects().isEmpty())
+    //        return;
+    //    qDebug() << "LOAD OK";
+    //    QWidget *qmlWindow = qobject_cast<QWidget*>(qmlEngine.rootObjects().at(0));
 
-//    //ui->verticalLayout->addWidget(container);
-//    ui->gridLayout_8->addWidget(qmlWindow);
+    //    //ui->verticalLayout->addWidget(container);
+    //    ui->gridLayout_8->addWidget(qmlWindow);
 
-   ui->quickWidget3DView->setSource(QUrl::fromLocalFile("3DVisual.qml"));
+    ui->quickWidget3DView->setSource(QUrl::fromLocalFile("3DVisual.qml"));
     ui->quickWidget3DView->show();
 }
 
@@ -201,7 +201,7 @@ void MainWindow::settingsLoadAll()
         }
 
         if (appSettings.value("Info/organizationName").value<QString>() != appSettings.organizationName() ||
-            appSettings.value("Info/applicationName").value<QString>() != appSettings.applicationName())
+                appSettings.value("Info/applicationName").value<QString>() != appSettings.applicationName())
         {
             qDebug() << "Abort loading settings ! organizationName or applicationName incorrect. Config file might be missing.";
             addLog(APP_MSG_ERROR_SETTINGS_LOAD_FAILED, true);
@@ -508,7 +508,7 @@ void MainWindow::processLogTable(QList<long> timeTable, QStringList labelTable, 
         }
         else
         {
-            if (oldRowCount == ui->tableWidgetLogTable->rowCount())
+            if (oldRowCount <= ui->tableWidgetLogTable->rowCount())
                 ui->tableWidgetLogTable->setRowCount(oldRowCount + 1);
 
             ui->tableWidgetLogTable->setItem(oldRowCount, 0, new QTableWidgetItem(QTime::fromMSecsSinceStartOfDay(timeTable[labelTable.indexOf(label)]).toString(parser.searchTimeFormatList[0])));
@@ -828,9 +828,9 @@ void MainWindow::on_tracerShowPointValue(QMouseEvent *event)
                           "<td>Y: %L3</td>"
                           "</tr>"
                           "</table>")
-                           .arg(graph->name())
-                           .arg(QTime::fromMSecsSinceStartOfDay(temp.x() * 1000).toString("hh:mm:ss:zzz"))
-                           .arg(QString::number(temp.y(), 'f', 5)),
+                       .arg(graph->name())
+                       .arg(QTime::fromMSecsSinceStartOfDay(temp.x() * 1000).toString("hh:mm:ss:zzz"))
+                       .arg(QString::number(temp.y(), 'f', 5)),
                        ui->widgetChart, ui->widgetChart->rect());
 }
 
@@ -1029,11 +1029,11 @@ void MainWindow::on_processSerial()
     {
         addLog(serialInput, ui->comboBoxAddTextMode->currentIndex());
     }
-    else if (ui->comboBoxFormat->currentIndex() == 1 && serialInput.length() > 0)
+    else if (ui->comboBoxFormat->currentIndex() == 1 && serialInput.isEmpty() == false)
     {
         addLogBytes(serialInput.toUtf8(), false, ui->comboBoxAddTextMode->currentIndex());
     }
-    else if (ui->comboBoxFormat->currentIndex() == 2 && serialInput.length() > 0)
+    else if (ui->comboBoxFormat->currentIndex() == 2 && serialInput.isEmpty() == false)
     {
         addLogBytes(serialInput.toUtf8(), true, ui->comboBoxAddTextMode->currentIndex());
     }
@@ -1156,13 +1156,13 @@ void MainWindow::processChart(QStringList labelList, QList<double> numericDataLi
 
         if (canAddGraph && ui->widgetChart->graphCount() < ui->spinBoxMaxGraphs->value() &&
 
-            ((ui->comboBoxGraphDisplayMode->currentIndex() == 0) ||
+                ((ui->comboBoxGraphDisplayMode->currentIndex() == 0) ||
 
-             (ui->comboBoxGraphDisplayMode->currentIndex() == 1 &&
-              ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive)) ||
+                 (ui->comboBoxGraphDisplayMode->currentIndex() == 1 &&
+                  ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive)) ||
 
-             (ui->comboBoxGraphDisplayMode->currentIndex() == 2 &&
-              !ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive))))
+                 (ui->comboBoxGraphDisplayMode->currentIndex() == 2 &&
+                  !ui->lineEditCustomParsingRules->text().simplified().contains(label, Qt::CaseSensitivity::CaseSensitive))))
         {
             ui->widgetChart->addGraph();
             ui->widgetChart->graph()->setName(label);
@@ -1271,13 +1271,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (ui->textBrowserLogs->hasFocus())
     {
-        if (event->key() == Qt::Key_Alt)
-        {
-            qDebug() << "Scrolling to buttom !" + QString::number(event->key());
-
-            ui->textBrowserLogs->verticalScrollBar()->setValue(ui->textBrowserLogs->verticalScrollBar()->maximum());
-        }
-        else if (ui->checkBoxSendKey->isChecked())
+        if (ui->checkBoxSendKey->isChecked() && event->modifiers() == Qt::NoModifier)
         {
             sendMessageKeyEvent(event);
 
